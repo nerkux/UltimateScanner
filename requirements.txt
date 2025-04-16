@@ -1,0 +1,4 @@
+aiogram
+asyncio
+http3
+validators
