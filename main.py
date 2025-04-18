@@ -1,8 +1,19 @@
 from modules.lib import *
 
+# SETTINGS INIT
+
+with open('settings.json') as f:
+    settings = json.load(f)
+logs = int(settings["log_channel"])
+token = settings["token"]
+if "," in settings["allowed_users"]:
+    admins = settings["allowed_users"].split(", ")
+else:
+    admins = settings["allowed_users"]
+
 # CONSTANTS
 
-bot = Bot(token="token")
+bot = Bot(token)
 dp = Dispatcher()
 
 def init():
@@ -12,19 +23,9 @@ def init():
     with open('other/messages.json') as f:
         msg_text = json.load(f)
 
-    # SETTINGS INIT
-
-    with open('settings.json') as f:
-        settings = json.load(f)
-    logs = int(settings["log_channel"])
-    if "," in settings["allowed_users"]:
-        admins = settings["allowed_users"].split(", ")
-    else:
-        admins = settings["allowed_users"]
-
     # CONSTANTS
 
-    nmap_image = FSInputFile("media/nmap.jpg")
+    nmap_image = FSInputFile("media/nmap.jpg") 
     whois_image = FSInputFile("media/whois.png")
     nikto_image = FSInputFile("media/nikto.jpg")
     fuzz_image = FSInputFile("media/fuzz.png")
@@ -55,7 +56,8 @@ def init():
     @dp.callback_query(F.data == "nmap")
     async def nmap_callback(callback: types.CallbackQuery, state: FSMContext):
         nmap_1 = eval(f"f'''{msg_text['nmap_1']}'''")
-        await bot.send_photo(callback.message.chat.id, photo=nmap_image, caption=nmap_1, parse_mode=ParseMode.HTML, reply_markup=return_kb.as_markup())
+        await bot.send_photo(callback.message.chat.id, photo=nmap_image,
+                             caption=nmap_1, parse_mode=ParseMode.HTML, reply_markup=return_kb.as_markup())
         await state.set_state(BuildNmap.writing_ip)
 
     @dp.message(BuildNmap.writing_ip)
@@ -157,7 +159,9 @@ def init():
     async def nikto_ip_handler(message: types.Message, state: FSMContext):
         if validators.url(message.text) == True or validators.ipv4(message.text) == True and message.text != "127.0.0.1":
             builded = message.text.removeprefix("https://")
-            if "&" in builded or "|" in builded or ":" in builded or "#" in builded or chr(92) in builded or ";" in builded or ".py" in builded or ".json" in builded: 
+            if "&" in builded or "|" in builded or ":" in builded\
+                or "#" in builded or chr(92) in builded or ";" in builded\
+                or ".py" in builded or ".json" in builded: 
                 error = eval(f"f'''{msg_text['error']}'''")
                 await bot.send_message(message.chat.id, error, parse_mode=ParseMode.HTML)
                 await state.set_state(BuildNikto.writing_ip)
@@ -325,3 +329,13 @@ def init():
 
 
 init()
+
+
+# command = input("Введите команду: ")
+# result = subprocess.run(command, shell=True, capture_output=True, text=True)
+# if result.returncode == 0:
+#     output = result.stdout
+#     print(f"Результат команды:\n{output}")
+# else:
+#     # Ошибка выполнения
+#     print(f"Ошибка выполнения команды:\n{result.stderr}")
