@@ -1,0 +1,6 @@
+{
+    "allowed_users" : "userid, userid",
+    "log_channel" : "channelid",
+    "owner" : "t.me/owner",
+    "token" : "token"
+}
