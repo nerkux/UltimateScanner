@@ -47,14 +47,16 @@ pip install -r requirements.txt
 ```
 **Не забудьте обновить файл settings.json**
 
-`git clone https://github.com/gchq/CyberChef-server`\n
-`cd CyberChef-server`\n
-`docker build -t cyberchef-server .`\n
-`docker run -it --rm --name=cyberchef-server -p 3000:3000 cyberchef-server &`
+```
+git clone https://github.com/gchq/CyberChef-server
+cd CyberChef-server
+docker build -t cyberchef-server .
+docker run -it --rm --name=cyberchef-server -p 3000:3000 cyberchef-server &
+python3 main.py
+```
 
-`python3 main.py`
-
-***Внимание!\nНа вашем хосте должны быть установлены такие утилиты как Nmap, Nikto и Wfuzz***
+***Внимание!
+На вашем хосте должны быть установлены такие утилиты как Nmap, Nikto и Wfuzz***
 ```
 apt install nmap
 apt install nikto
