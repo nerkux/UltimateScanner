@@ -85,7 +85,7 @@ def init():
             await bot.delete_messages(message.chat.id, [message.message_id, message.message_id-1])
             nmap_3 = eval(f"f'''{msg_text['nmap_3']}'''")
             await bot.send_photo(message.from_user.id, photo=nmap_image, caption=nmap_3, parse_mode=ParseMode.HTML, reply_markup=nmap_kb.as_markup())
-            await bot.send_message(logs, f"<i>#лог #запрос</i>\n\n<blockquote>🧑‍💻 Юзер:\n<i>{message.from_user.full_name}\n@{message.from_user.username}</i></blockquote>\n\n<blockquote>Запрос:\n{adress}\n{message.text}</blockquote>", parse_mode=ParseMode.HTML)
+            await bot.send_message(logs, f"<i>#лог #запрос #nmap</i>\n\n<blockquote>🧑‍💻 Юзер:\n<i>{message.from_user.full_name}\n@{message.from_user.username}</i></blockquote>\n\n<blockquote>Запрос:\n{adress}\n{message.text}</blockquote>", parse_mode=ParseMode.HTML)
             await state.update_data(params=message.text)
 
     @dp.callback_query(F.data == "start_nmap")
@@ -124,7 +124,7 @@ def init():
         else:
             await bot.delete_messages(message.chat.id, [message.message_id, message.message_id-1])
             await bot.send_photo(message.from_user.id, photo=whois_image, caption=f"<b>Whois</b> 🔎\nАдрес: {message.text}", parse_mode=ParseMode.HTML, reply_markup=whois_kb.as_markup())
-            await bot.send_message(logs, f"<i>#лог #запрос</i>\n\n<blockquote>🧑‍💻 Юзер:\n<i>{message.from_user.full_name}\n@{message.from_user.username}</i></blockquote>\n\n<blockquote>Запрос:\n{message.text}</blockquote>", parse_mode=ParseMode.HTML)
+            await bot.send_message(logs, f"<i>#лог #запрос #whois</i>\n\n<blockquote>🧑‍💻 Юзер:\n<i>{message.from_user.full_name}\n@{message.from_user.username}</i></blockquote>\n\n<blockquote>Запрос:\n{message.text}</blockquote>", parse_mode=ParseMode.HTML)
             await state.clear()
             await state.update_data(adress=message.text)
 
@@ -169,7 +169,7 @@ def init():
                 await bot.delete_messages(message.chat.id, [message.message_id, message.message_id-1])
                 nikto_2 = eval(f"f'''{msg_text['nikto_2']}'''")
                 await bot.send_photo(message.from_user.id, photo=nikto_image, caption=nikto_2, parse_mode=ParseMode.HTML, reply_markup=nikto_kb.as_markup())
-                await bot.send_message(logs, f"<i>#лог #запрос</i>\n\n<blockquote>🧑‍💻 Юзер:\n<i>{message.from_user.full_name}\n@{message.from_user.username}</i></blockquote>\n\n<blockquote>Запрос:\n{message.text}</blockquote>", parse_mode=ParseMode.HTML)
+                await bot.send_message(logs, f"<i>#лог #запрос #nikto</i>\n\n<blockquote>🧑‍💻 Юзер:\n<i>{message.from_user.full_name}\n@{message.from_user.username}</i></blockquote>\n\n<blockquote>Запрос:\n{message.text}</blockquote>", parse_mode=ParseMode.HTML)
                 await state.clear()
                 await state.update_data(adress=message.text)
         else:
@@ -216,7 +216,7 @@ def init():
                 await bot.delete_messages(message.chat.id, [message.message_id, message.message_id-1])
                 fuzzer_2 = eval(f"f'''{msg_text['fuzzer_2']}'''")
                 await bot.send_photo(message.from_user.id, photo=fuzz_image, caption=fuzzer_2, parse_mode=ParseMode.HTML, reply_markup=fuzz_kb.as_markup())
-                await bot.send_message(logs, f"<i>#лог #запрос</i>\n\n<blockquote>🧑‍💻 Юзер:\n<i>{message.from_user.full_name}\n@{message.from_user.username}</i></blockquote>\n\n<blockquote>Запрос:\n{message.text}</blockquote>", parse_mode=ParseMode.HTML)
+                await bot.send_message(logs, f"<i>#лог #запрос #wfuzz</i>\n\n<blockquote>🧑‍💻 Юзер:\n<i>{message.from_user.full_name}\n@{message.from_user.username}</i></blockquote>\n\n<blockquote>Запрос:\n{message.text}</blockquote>", parse_mode=ParseMode.HTML)
                 await state.clear()
                 await state.update_data(adress=message.text)
 
@@ -263,7 +263,7 @@ def init():
             await bot.delete_messages(message.chat.id, [message.message_id, message.message_id-1])
             chef_2 = eval(f"f'''{msg_text['chef_2']}'''")
             await bot.send_photo(message.from_user.id, photo=chef_image, caption=chef_2, parse_mode=ParseMode.HTML, reply_markup=return_kb.as_markup())
-            await bot.send_message(logs, f"<i>#лог #запрос</i>\n\n<blockquote>🧑‍💻 Юзер:\n<i>{message.from_user.full_name}\n@{message.from_user.username}</i></blockquote>\n\n<blockquote>Запрос:\n{message.text}</blockquote>", parse_mode=ParseMode.HTML)
+            await bot.send_message(logs, f"<i>#лог #запрос #CyberChef</i>\n\n<blockquote>🧑‍💻 Юзер:\n<i>{message.from_user.full_name}\n@{message.from_user.username}</i></blockquote>\n\n<blockquote>Запрос:\n{message.text}</blockquote>", parse_mode=ParseMode.HTML)
             await state.set_state(BuildChef.writing_cipher)
             await state.update_data(chef_method=message.text)
 
