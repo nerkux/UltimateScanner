@@ -48,6 +48,7 @@ pip install -r requirements.txt
 **Не забудьте обновить файл settings.json**
 
 ```
+apt install docker.io -y
 git clone https://github.com/gchq/CyberChef-server
 cd CyberChef-server
 docker build -t cyberchef-server .
