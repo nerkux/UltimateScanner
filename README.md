@@ -53,6 +53,7 @@ git clone https://github.com/gchq/CyberChef-server
 cd CyberChef-server
 docker build -t cyberchef-server .
 docker run -it --rm --name=cyberchef-server -p 3000:3000 cyberchef-server &
+cd ..
 python3 main.py
 ```
 
